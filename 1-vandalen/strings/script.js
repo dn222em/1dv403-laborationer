@@ -4,14 +4,37 @@ window.onload = function(){
 
 	// I denna funktion ska du skriva koden för att hantera "spelet"
 	var convertString = function(str){
-		// Plats för förändring.		
-		// Returnera den konverterade strängen.
-		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
+		
+	// Plats för förändring.
 	
+///Replace all the "a" and "A" characters to the "#" symbol.
+	str =str.replace(/a/gi, "#");
 
-
-
-
+///Create an Array from a string using the ".split()" method.
+	//A "for" changes the small letters to big ones(capitals) and the big letters to small ones.
+	var res = new Array();
+	res = str.split("",str.length);
+	
+	for (var i =0; i <res.length; i++){
+		
+		if (res[i] == res[i].toLowerCase()){
+			
+			res[i]=res[i].toUpperCase();
+		}
+		else if (res[i] == res[i].toUpperCase()){
+		
+			res[i]=res[i].toLowerCase();
+		}
+	}
+	
+	// Vid fel, kasta ett undantag med ett meddelande till användaren. 
+///Take care of empty string 
+	if (str.trim() ===""){
+		alert("Du måste skriva något!");
+	}
+	
+	// Returnera den konverterade strängen.
+	return alert(res.join(""));
 
 
 	};

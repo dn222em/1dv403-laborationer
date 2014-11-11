@@ -1,6 +1,8 @@
 "use strict";
 
 window.onload = function(){
+	
+	//var number =0;
 
 	//var number = +prompt("Ange ett tal: ");
 	
@@ -10,7 +12,7 @@ window.onload = function(){
 	console.log("Det hemliga talet: " + secret); // Du når den yttre variabeln secret innifrån funktionen.
 	console.log("Du gissade: " + number); // Detta nummer är det som användaren gissade på.
 	
-	//number= readline();
+	
 	var count = 0;
 	var secret = Math.floor( Math.random() * 100 + 1);  //* (max-min)+1 )+min; Math.floor( Math.random() * (100-1)+1) + 1; Math.floor( Math.random() * 100)+1; //50; // Detta tal behöver bytas ut mot ett slumpat tal.
 	
@@ -20,21 +22,17 @@ window.onload = function(){
 
 		try{
 			
-		
-			number = +prompt("Ange ett tal mellan '0' och '100': ");
+			//number= Number(number);
+			number = prompt("Ange ett tal mellan '0' och '100': ");
 			
-			
-		/*	if(!(+prompt  > 0 && +prompt  < 100 ))
-			{
-				
-				--count;
-			}*/
+			//number = Number(number);
 			
 			// [false, "Talet är utanför intervallet 0 - 100"]
 			if(number<1 || number>100){
 				
 			alert("Du måste ange ett helltal mellam '1' och '100'");
 			--count;
+			break;
 			
 			}
 			// Returnera exempelvis: 
@@ -53,12 +51,14 @@ window.onload = function(){
 			return;
 		}
 		// [false, "Det hemliga talet är högre!"]
-		else if(number < secret && number !==0){
+		else if(number < secret && number !==0) { 
 			alert("Det hemliga talet är högre!");
+			
 		}
 		// [false, "Det hemliga talet är lägre!"]
-		else if(number > secret &&   number <100){
+		else if(number > secret &&   number <100) {
 			alert("Det hemliga talet är lägre!");
+			
 		}
 		
 	}
