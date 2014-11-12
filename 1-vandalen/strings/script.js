@@ -12,7 +12,7 @@ window.onload = function(){
 
 ///Create an Array from a string using the ".split()" method.
 	//A "for" changes the small letters to big ones(capitals) and the big letters to small ones.
-	var res = new Array();
+	var res = [];
 	res = str.split("",str.length);
 	
 	for (var i =0; i <res.length; i++){
@@ -30,11 +30,11 @@ window.onload = function(){
 	// Vid fel, kasta ett undantag med ett meddelande till användaren. 
 ///Take care of empty string 
 	if (str.trim() ===""){
-		alert("Du måste skriva något!");
+		console.log("Du måste skriva något!");
 	}
 	
 	// Returnera den konverterade strängen.
-	return alert(res.join(""));
+	return console.log(res.join(""));
 
 
 	};
