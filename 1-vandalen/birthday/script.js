@@ -5,10 +5,50 @@ window.onload = function(){
 	
 	var birthday = function(date){
 		
+					
+					//Tranform user's input to a datetime.
+					date =new Date(date);
+					//Setting today's date. 
+					var today = new Date();	
+					var localDiffToday = today.getTimezoneOffset();
+					
+	
+					//Take care of input errors
+				    	if(today.getFullYear() < date.getFullYear()){
+				    		throw new Error("You have not been born yet! Please enter a valid year of birth!");
+				    	}
+				    	else if(today.getFullYear() == date.getFullYear() && today.getMonth() < date.getMonth()){
+				    		throw new Error("You have not been born yet! Please enter a valid year, or month of birth!");
+				    	}
+				    	else if((today.getFullYear() - date.getFullYear()) + (today.getMonth() - date.getMonth()) === 0 && today.getDate() < date.getDate()){
+				    		throw new Error("You have not been born yet! Please enter a valid year, or month, or day of birth!");
+				    	}
+				    //Changing the yar of birth to this year..diff == 0;	
+				    	date.setFullYear(today.getFullYear());
+				    	
+				    //Control that the birthday is not passed. And if...
+						if (today > date) {
+						  date.setFullYear(today.getFullYear() + 1);
+						}
+				    //Checking if the birthday is today or tomorrow.
+						if(today.getDate() == date.getDate()){
+							return 0;
+						}
+						if(date.getDate()-today.getDate()==1){
+							return 1;
+						}
+					
+					//Calculate difference between days + plus one day if we want it like this.
+					 var happyDay =Math.round(((date - today)+(localDiffToday*60*1000)) / (1000*60*60*24)+1);
+					 
+					//Returns the result-birthday.
+					 return happyDay;
+						
+		
+		
 
 
-			// Din kod här.
-
+	
 
 
 
