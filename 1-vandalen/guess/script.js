@@ -16,28 +16,22 @@ window.onload = function(){
 	
 	count++;
 	
-		//[false, "ingen tal"]
 		if(isNaN(number)){
-			console.log("Du måste ange ett helltal!");
 			count--;
+			return [false, "ingen tal"];
 		}
-		// [false, "Talet är utanför intervallet 0 - 100"]
 		else if(number<1 || number>100){
-			console.log("Du måste ange ett helltal mellam '1' och '100'");
 			count--;
+			return [false, "Talet är utanför intervallet 0 - 100"];
 		}
-		// [true, "Grattis du vann! Det hemliga talet var X och du behövde Y gissningar för att hitta det."]
 		else if(number == secret){
-			console.log("Grattis du vann! Det hemliga talet var "+secret+" och du behövde "+count+" gissningar för att hitta det. \n Uppdatera sidan för at spela igen!");
-			return;
+			return [true, "Grattis du vann! Det hemliga talet var "+secret+" och du behövde " + count+ " gissningar för att hitta det."];
 		}
-		// [false, "Det hemliga talet är högre!"]
 		else if(number < secret && number !==0) { 
-			console.log("Det hemliga talet är högre!");
+			return [false, "Det hemliga talet är högre!"]; 
 		}
-		// [false, "Det hemliga talet är lägre!"]
 		else if(number > secret &&   number <100) {
-			console.log("Det hemliga talet är lägre!");
+			return [false, "Det hemliga talet är lägre!"];
 		}
 	};
 

@@ -11,7 +11,7 @@ window.onload = function(){
 	str =str.replace(/a/gi, "#");
 
 ///Create an Array from a string using the ".split()" method.
-	//A "for" changes the small letters to big ones(capitals) and the big letters to small ones.
+	//A "for" loop changes the small letters to big ones(capitals) and the big letters to small ones.
 	var res = [];
 	res = str.split("",str.length);
 	
@@ -34,7 +34,7 @@ window.onload = function(){
 	}
 	
 	// Returnera den konverterade strängen.
-	return console.log(res.join(""));
+	return res.join("");
 
 
 	};
