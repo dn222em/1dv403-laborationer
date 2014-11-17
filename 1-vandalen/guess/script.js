@@ -7,30 +7,33 @@ window.onload = function(){
 		
 	// I denna funktion ska du skriva koden för att hantera "spelet"
 	var guess = function(number){
-	
+	number = parseInt(number);
 	console.log("Det hemliga talet: " + secret); // Du når den yttre variabeln secret innifrån funktionen.
 	console.log("Du gissade: " + number); // Detta nummer är det som användaren gissade på.
 		
 	
 	// Plats för förändring.
 	
-	count++;
+	
 	
 		if(isNaN(number)){
-			count--;
+			//count--;
 			return [false, "ingen tal"];
 		}
-		else if(number<1 || number>100){
-			count--;
+		if(number<1 || number>100){
+			//count--;
 			return [false, "Talet är utanför intervallet 0 - 100"];
 		}
-		else if(number == secret){
+		
+		count++;
+		
+		if(number == secret){
 			return [true, "Grattis du vann! Det hemliga talet var "+secret+" och du behövde " + count+ " gissningar för att hitta det."];
 		}
-		else if(number < secret && number !==0) { 
+		else if(number < secret && number !== 0) { 
 			return [false, "Det hemliga talet är högre!"]; 
 		}
-		else if(number > secret &&   number <100) {
+		else if(number > secret && number <100) {
 			return [false, "Det hemliga talet är lägre!"];
 		}
 	};

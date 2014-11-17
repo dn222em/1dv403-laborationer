@@ -6,17 +6,24 @@ var makePerson = function(persArr){
 	// Din kod här...
 
 //===Create an Array with ages:===
-    var ageArr = [];
-    var yearsOld =persArr.forEach(function(e){return ageArr.push(e.age);});
+    //var ageArr = [];
+    //var yearsOld =persArr.forEach(function(e){return ageArr.push(e.age);});
+    var ageArr = persArr.map(function(person){
+        return person.age;
+    });
     //var a= persArr.filter(function(item) {return (item.age > 0);}); //Why it's not working?
  
 //===Create an Array with names:===
-    var nameArr=[];
-    var nameOn =persArr.forEach(function(e){return nameArr.push(e.name);});
+    //var nameArr=[];
+    //var nameOn =persArr.forEach(function(e){return nameArr.push(e.name);});
+    
+    var nameArr = persArr.map(function(person){
+        return person.name;
+    });
     //var nameArr = persArr.filter(function(item) {return  item.name;});
 
 
-//===Sortering the Array with names :== Sorting strings with non-ASCII characters, i.e. strings with accented characters (e, é, è, a, ä, etc.)===
+//===Sorting the Array with names :== Sorting strings with non-ASCII characters, i.e. strings with accented characters (e, é, è, a, ä, etc.)===
     nameArr.sort(function (a, b) {return a.localeCompare(b)});
    
     // Array.sort(nameArr);
@@ -38,7 +45,7 @@ var makePerson = function(persArr){
 //====Create a Class; A Constructor; A Method====
     function Person(){
         this.name = "No name?";
-        this.age;
+        this.age ;
     }
 
 //======Encapsulating the properties.===========

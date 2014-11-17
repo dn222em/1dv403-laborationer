@@ -28,8 +28,9 @@ window.onload = function(){
 	}
 	
 	// Vid fel, kasta ett undantag med ett meddelande till användaren. 
-///Take care of empty string 
-	if (str.trim() ===""){
+	///Take care of empty string
+	//str.length
+	if (str.trim() === ""){
 		console.log("Du måste skriva något!");
 	}
 	
