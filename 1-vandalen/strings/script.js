@@ -1,5 +1,4 @@
 "use strict";
-
 window.onload = function(){
 
 	// I denna funktion ska du skriva koden för att hantera "spelet"

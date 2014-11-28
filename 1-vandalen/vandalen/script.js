@@ -11,8 +11,7 @@ var makePerson = function(persArr){
     var ageArr = persArr.map(function(person){
         return person.age;
     });
-    //var a= persArr.filter(function(item) {return (item.age > 0);}); //Why it's not working?
- 
+
 //===Create an Array with names:===
     //var nameArr=[];
     //var nameOn =persArr.forEach(function(e){return nameArr.push(e.name);});
@@ -20,7 +19,6 @@ var makePerson = function(persArr){
     var nameArr = persArr.map(function(person){
         return person.name;
     });
-    //var nameArr = persArr.filter(function(item) {return  item.name;});
 
 
 //===Sorting the Array with names :== Sorting strings with non-ASCII characters, i.e. strings with accented characters (e, é, è, a, ä, etc.)===
