@@ -10,12 +10,10 @@ window.onload = function(){
     
     var now = new Date();//.toLocaleString();
     var publish = document.getElementById("publish-button");
-    publish.onclick = createMessage;
-    
     
     var message = new Message();
 	var messages = [];
-	var ul = null;//document.createElement("ul");
+	var ul = document.getElementById("comment-holder");
 	var li = null;//document.createElement("li");
     var idCounter=0;
 	var div1 = null;
@@ -27,20 +25,35 @@ window.onload = function(){
 	var div7 = null;
 	var div8 = null;
 	var p = null;
-    var paragr = document.getElementById("count-comments");//.removeChild(div6);
+    var paragr = document.getElementById("count-comments");
     var messageBirth;
-    
-    console.log(messages);
-    
+    var subText = null;//
 
+    publish.onclick = createMessage;
+    
+    var shiftEnterKey = document.getElementById("comment-box");
+    shiftEnterKey.onkeypress = function ( e) {
+        
+        if(e.keyCode == 13 && !e.shiftKey) {
+            createMessage();
+        }
+        else if (e.keyCode == 13 && e.shiftKey) {
+                //shiftEnterKey.value+='<br  />';//
+            }
+        };
+    
+    /*var enterKey = document.getElementById("comment-box");
+    enterKey.onkeypress = function (e) {
+        if(e.keyCode === 13){
+            createMessage();
+        }
+    };
 	
-	ul = document.createElement("ul");
+	/*ul = document.createElement("ul");
 	document.getElementById("comments-list").appendChild(ul);
-	ul.id = "comment-holder";
+	ul.id = "comment-holder";*/
     	
     
-	
-
     function createMessage(){
 
 		message.setText(document.getElementById("comment-box").value);
@@ -59,15 +72,24 @@ window.onload = function(){
             },delay); 
 		return;
 		}
-		
-		message.setNewDate(now);  //= now;
-		messages.push(message);
+        
+        
+		message.setNewDate(now);
+		if(shiftEnterKey){
+        subText = message.toString();
+        var kaka = subText.replace(/[\n\r]/g, "<br />");
+        message.setText(kaka);
+		}
+        
+		pushUp(message);
 		idCounter++;
 		createElements(message);
 		document.getElementById("comment-box").value = null;
 
-		//return messages.push(message);
-
+    }
+    
+    function pushUp(message){
+        return messages.push(message);
     }
 
     function createElements(message){
@@ -80,26 +102,21 @@ window.onload = function(){
         }
 	    
 	    li = document.createElement("li");
-    	document.getElementById("comment-holder").appendChild(li);
-    	
+    	document.getElementsByClassName("comment-holder")[0];//.appendChild(li);
     	//li.innerHTML = message.message;//toString();//message.message;
         li.className ="comment-holder-li";
-	    //li.id = "comment-holder-li";
 	    li.id = idCounter+"li";
 
 	    ul.appendChild(li);
     	
+    	ul.insertBefore(li, ul.childNodes[0]);
+
         p=document.createElement("p");
         document.getElementById(li.id).appendChild(p);
         p.className ="comment-paragraf";
         li.appendChild(p);
         p.innerHTML = message.message;
 
-
-        
-        
-	    
-	    
 	    div1 = document.createElement("div");
         document.getElementById(li.id).appendChild(div1);
         //document.getElementsByClassName("comment-holder-li")[0];
@@ -166,7 +183,6 @@ window.onload = function(){
         paragr.appendChild(div6);
 
         div6.innerHTML= messages.length;
-        
     }
         
     function showTime(str){
@@ -217,33 +233,17 @@ window.onload = function(){
     
    function deleteMessage(str){
        
-      
-        //var a = str.target.nodeName;
+        var a = str.target.nodeName;
         var a = str.target.id;
         var b =a.replace('delete-button','');
         var c = b +"li";
     
-        var conf = confirm("Vill du verkligen radera meddelandet?");
          
-        div6.innerHTML= --messages.length;
-
-        var x = document.getElementById(c);
-        x.remove(x.selectedIndex);
-        
-       
-
-        
-        //x.remove(x.selectedIndex);
-        
-        /*var b = document.getElementById(x).parentNode.id;
-        var c = document.getElementById(b).parentNode.id;
-        var d = document.getElementById(c).parentNode.nodeName;
-        var e = document.getElementById(d).parentNode.id;
-        //alert(event.target.id+" and "+event.target.class);
-         
-        
-        //console.log(c);*/
-       
+        if (confirm("Vill du verkligen radera meddelandet?")){
+            var x = document.getElementById(c);
+            x.remove(x.selectedIndex);
+            div6.innerHTML= --messages.length;
+        }
    }
 
 };

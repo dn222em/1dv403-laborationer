@@ -7,7 +7,7 @@
     
         this.getText = function(){ return this.message; };
         this.setText = function(_message){
-            if(typeof _message ==="undefined" || _message.trim() ===""){
+            if(typeof _message === "undefined" || _message.trim() ==="" ){
                 console.log("Textarean är tom!");
             }
             this.message = _message;};
@@ -17,10 +17,10 @@
     }
     
     Message.prototype.toString = function (){
-        return this.getText() +"<br/>"+"<br/>" +" (" + this.getNewDate() + ") ";
+        return this.getText();// +"<br/>"+"<br/>" +" (" + this.getNewDate() + ") ";
     };
     
-    
+    Message.prototype.getHTMLText = function (){return Message.toString().replace(/[\n\r]/gi, "<br />");};
 /* function Message (message, date){
         
         this.message;

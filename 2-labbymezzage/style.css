@@ -5,7 +5,7 @@
    License: none (public domain)
 */
 
-/*html, body, div, span, applet, object, iframe,
+html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -53,11 +53,15 @@ table {
 /*CSS -Stylesheet
 ======================================================================================================*/
 #container{
-    width: 600px;
-	background-color:#c2d8fc;
+    width: 660px;
+    height:auto;
+	background-color:#cce889;/*#c2d8fc;*/
 	margin:0 auto;
 	padding:0;
-
+	background-image:url("pics/20.png");
+	background-repeat:no-repeat;
+	background-size:660px 130px;
+	margin-top:-22px;
 
 }
 
@@ -66,24 +70,29 @@ h1{
 	margin-bottom:50px;
 }
 
+/*body{
+	background-color:#FFF;
+}*/
 main {
 
 	background-color: #FFF;
 	width: 600px;
 	margin:10px auto 10px auto;
 	height:600px;
+	margin-top:150px;
 }
 
 .comment-paragraf{
 	width:500px;
+	margin-top:-0.5px;
 }
 /*=======================================================p - total comments*/
 .count-comments{
 	font-size:1em;
 	font-family:'Times';
 	float:right;
-	margin-right:23px;
-	margin-bottom:-3px;
+	margin-right:26px;
+	margin-bottom:-2px;
 	color:#888;
 }
 
@@ -141,10 +150,10 @@ main {
 
 .comment-holder-li{
 	list-style-type:none;
-	margin:10px 0px 10px 0px;
- 	border:1px solid #e1e1e1;
- 	padding-left:10px;
- 	padding-right:10px;
+	margin:5px 0px 5px 0px;
+ 	border:1px solid black;/*#e1e1e1;*/
+ 	padding-left:5px;
+ 	padding-right:5px;
 	background-color:#cce889;
 	min-height:80px;
 	display:block;
@@ -235,23 +244,22 @@ main {
 	height:130px;
 	width:auto;
 	margin:5px;
-	margin-right:11px;
-	margin-left:16px;
-	margin-top:47px;
+	margin-right:20px;
+	margin-left:25px;
+	margin-top:55px;
 	min-height:100px;
-	padding:5px
+
 
 }
 
 #comment-box{
 	width:98%;
-	/*border:1px solid #cce889;/*#a1a1a1;*/
 	color:#223;/*#272426;*/
 	height:98%;
 	position:relative;
 	resize:none;
-	/*resize:vertical;
-	resize:horizontal;*/
+	margin-top:-1px;
+
 
 }
 
@@ -260,15 +268,11 @@ main {
 }
 
 #comment-publish-button{
-	margin-top:-5px;
+	margin-top:-2px;
 	float:right;
-	margin-right:21px;
+	margin-right:25px;
 
-	
 }
 #publish-button{
-	/*background-color:#cce889;*/
 	cursor:pointer;
-	
-	
 }
