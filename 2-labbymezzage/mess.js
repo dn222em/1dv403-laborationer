@@ -242,7 +242,7 @@ var MessageBoard = {
     
    function deleteMessage(str){
        
-        var a = str.target.nodeName;
+        //var a = str.target.nodeName;
         var a = str.target.id;
         var b =a.replace('delete-button','');
         var c = b +"li";

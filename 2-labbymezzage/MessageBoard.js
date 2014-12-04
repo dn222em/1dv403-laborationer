@@ -265,9 +265,9 @@ var MessageBoard = {
             var x = document.getElementById(c);
             x.remove(x.selectedIndex);
             MessageBoard.messages.splice(index,1);
-              console.log(MessageBoard.messages);
-            div6.innerHTML = --MessageBoard.messages.length;
-
+            console.log(MessageBoard.messages);
+            var  fr= document.getElementById("count-length");//.value==MessageBoard.messages.length-1);
+            fr.innerHTML=MessageBoard.messages.length;
 
         }
    }
