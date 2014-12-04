@@ -84,7 +84,7 @@ main {
 
 .comment-paragraf{
 	width:500px;
-	margin-top:-0.5px;
+	margin:2px;
 }
 /*=======================================================p - total comments*/
 .count-comments{
@@ -108,6 +108,8 @@ main {
 	color:#555;
 	margin:20px;
 	border-bottom:1px solid #e1e1e1;
+	border:none;
+
 }
 
 /*==========================================================comment area*/
@@ -259,7 +261,6 @@ main {
 	position:relative;
 	resize:none;
 	margin-top:-1px;
-
 
 }
 

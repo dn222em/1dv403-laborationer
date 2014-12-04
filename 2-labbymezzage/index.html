@@ -1,24 +1,12 @@
 <!doctype html>
 <html lang="sv">
 <head>
-       <!-- <script>
-				document.createElement("header");
-				document.createElement("hgroup");
-				document.createElement("footer");
-				document.createElement("article");
-				document.createElement("main");
-				document.createElement("section");
-				document.createElement("nav");
-				document.createElement("aside");
-				document.createElement("address");
-		</script> -->
 			
         <meta charset="utf-8">
         <title>Labby mezzage</title>
         <link rel="stylesheet" href="style.css" />
         <script type="text/javascript" src="Message.js"></script>
-        <script type="text/javascript" src="mess.js"></script>
-        <script type="text/javascript" src="init.js"></script>
+        <script type="text/javascript" src="MessageBoard.js"></script>
 </head>
 <body>
     <div id="container">
@@ -28,20 +16,18 @@
     <main>
         <div id="page">
             The page here
-        </div>
              <div class="main-comment">
  <h3 class="comment-title">Comment-Beta</h3>
-                 <div id="comments-list" class="comments-list">
+                <div id="comments-list" class="comments-list">
                      <ul id="comment-holder" class="comment-holder">
-                                           </ul> 
-                            <!--<div id="comment-date" class="comment-date">
-               <h3 id="comment-date-given" class="comment-date-given">2014-11-28 18:43:41</h3>-->
-                               </div>
+                     </ul> 
+                            
+                </div>
        
-                 </div>
+         </div>
     <p id="count-comments" class="count-comments">Antal meddelande: <code id="count-length" class="count-length">0</code></p>
          <div class="comment-box">
-            <textarea type="textarea" name="kommentar" id="comment-box"></textarea>
+            <textarea  name="kommentar" id="comment-box"></textarea>
          </div>
          <div id="comment-publish-button">
              <input id="publish-button" type="button" name="submit" value="Publicera" />

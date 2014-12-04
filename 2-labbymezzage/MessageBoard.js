@@ -5,57 +5,63 @@
  * fönstret laddat klart. * 
  */
 
-window.onload = function(){
+var MessageBoard = {
     
+    messages : [],
     
-    var now = new Date();//.toLocaleString();
+    count: 0,
+    
+    init : function (){
+     
     var publish = document.getElementById("publish-button");
-    
-    var message = new Message();
-	var messages = [];
-	var ul = document.getElementById("comment-holder");
-	var li = null;//document.createElement("li");
-    var idCounter=0;
-	var div1 = null;
-	var div2 = null;
-	var div3 = null;
-	var div4 = null;
-	var div5 = null;
-	var div6 = null;
-	var div7 = null;
-	var div8 = null;
-	var p = null;
-    var paragr = document.getElementById("count-comments");
-    var messageBirth;
-    var subText = null;//
+    publish.onclick = MessageBoard.createMessage;
 
-    publish.onclick = createMessage;
-    
     var shiftEnterKey = document.getElementById("comment-box");
     shiftEnterKey.onkeypress = function ( e) {
         
         if(e.keyCode == 13 && !e.shiftKey) {
-            createMessage();
+            MessageBoard.createMessage();
+            return false;
+
         }
         else if (e.keyCode == 13 && e.shiftKey) {
                 //shiftEnterKey.value+='<br  />';//
             }
         };
-    
     /*var enterKey = document.getElementById("comment-box");
     enterKey.onkeypress = function (e) {
         if(e.keyCode === 13){
             createMessage();
         }
-    };
-	
-	/*ul = document.createElement("ul");
-	document.getElementById("comments-list").appendChild(ul);
-	ul.id = "comment-holder";*/
+    };*/
+},
     	
     
-    function createMessage(){
-
+    createMessage:function (){
+        
+        var now = new Date();//.toLocaleString();
+        var message = new Message();
+    	var ul = document.getElementById("comment-holder");
+    	var li = null;//document.createElement("li");
+    	var div1 = null;
+    	var div2 = null;
+    	var div3 = null;
+    	var div4 = null;
+    	var div5 = null;
+    	var div6 = null;
+    	var div7 = null;
+    	var div8 = null;
+    	var p = null;
+        var paragr = document.getElementById("count-comments");
+        var messageBirth;
+        var subText = null;
+        var emptyLine = null;
+        var idCounter = MessageBoard.count;
+        getMessage();
+        
+        
+        function getMessage(){
+		
 		message.setText(document.getElementById("comment-box").value);
 		
 		if(message.message === "" || document.getElementById("comment-box").value.trim() ===""){
@@ -73,29 +79,32 @@ window.onload = function(){
 		return;
 		}
         
-        
 		message.setNewDate(now);
-		if(shiftEnterKey){
-        subText = message.toString();
-        var kaka = subText.replace(/[\n\r]/g, "<br />");
-        message.setText(kaka);
+		if(MessageBoard.shiftEnterKey){
+            subText = message.toString();
+            emptyLine = subText.replace(/[\n\r]/g, "<br/>");
+            message.setText(emptyLine);
 		}
-        
-		pushUp(message);
-		idCounter++;
+		++idCounter;
+		//message.id = "message No"+idCounter;
+		message.setId("message No"+idCounter);
+	    MessageBoard.messages.push(message);
 		createElements(message);
-		document.getElementById("comment-box").value = null;
-
+		emptyBox();
+		MessageBoard.count++;
+        return message;
+        
     }
     
-    function pushUp(message){
-        return messages.push(message);
+    function emptyBox(){
+    document.getElementById("comment-box").value="";
+	var boxNew =document.getElementById("comment-box").value;
+    boxNew.trim();
+
     }
 
     function createElements(message){
-	    
-        //div6 = document.getElementById("count-length");
-        //paragr.removeChild(div6);
+
         div6 = document.getElementsByClassName("count-length");
 	    while(div6[0]) {
          div6[0].parentNode.removeChild(div6[0]);
@@ -178,11 +187,11 @@ window.onload = function(){
 
         div6 = document.createElement("code");
         document.getElementById("count-comments").appendChild(div6);
-        div6.id = idCounter+"count-length";
+        div6.id = "count-length";
         div6.className = "count-length";
         paragr.appendChild(div6);
 
-        div6.innerHTML= messages.length;
+        div6.innerHTML= MessageBoard.messages.length;
     }
         
     function showTime(str){
@@ -231,23 +240,44 @@ window.onload = function(){
         alert(str1);
     }
     
+    
    function deleteMessage(str){
        
-        var a = str.target.nodeName;
+       
+        //var a = str.target.nodeName;
         var a = str.target.id;
         var b =a.replace('delete-button','');
         var c = b +"li";
-    
-         
-        if (confirm("Vill du verkligen radera meddelandet?")){
+        var e = "message No"+b;
+        var d = confirm("Vill du verkligen radera meddelandet?");
+        var index;
+        
+        if (d){
+            for(var i = 0; i < MessageBoard.messages.length; i++) {
+            
+                if(MessageBoard.messages[i].id === e){
+                    console.log(i);
+                    index =i;
+                    break;
+                }
+            }
+            
             var x = document.getElementById(c);
             x.remove(x.selectedIndex);
-            div6.innerHTML= --messages.length;
+            MessageBoard.messages.splice(index,1);
+              console.log(MessageBoard.messages);
+            div6.innerHTML = --MessageBoard.messages.length;
+
+
         }
    }
+  console.log(MessageBoard.messages.length);
+  console.log(MessageBoard.messages);
+    
+}
 
 };
 	
-
-
+// Här ser vi till att starta applikationen när fönstret laddat klart.
+window.onload = MessageBoard.init;
    
