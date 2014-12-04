@@ -1,3 +1,7 @@
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
+
+
+
 /*Reset-styleshhet
 -----------------------------------------------------------------------------*/
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -78,10 +82,24 @@ main {
 	background-color: #FFF;
 	width: 600px;
 	margin:10px auto 10px auto;
-	height:600px;
+	height:auto;
 	margin-top:150px;
+	padding-bottom:50px;
 }
 
+footer{
+	margin-top:50px;
+	clear:both;
+}
+
+footer p {
+	font-family:'Pacifico', cursive;
+	font-size:2.2em;
+	text-align:right;
+	color:#fff;
+	margin:10px;
+	padding-bottom:10px;
+}
 .comment-paragraf{
 	width:500px;
 	margin:2px;

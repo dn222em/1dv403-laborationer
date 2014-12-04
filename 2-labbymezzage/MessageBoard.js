@@ -35,7 +35,6 @@ var MessageBoard = {
         }
     };*/
 },
-    	
     
     createMessage:function (){
         
@@ -268,14 +267,11 @@ var MessageBoard = {
             console.log(MessageBoard.messages);
             var  fr= document.getElementById("count-length");//.value==MessageBoard.messages.length-1);
             fr.innerHTML=MessageBoard.messages.length;
-
         }
    }
-  console.log(MessageBoard.messages.length);
-  console.log(MessageBoard.messages);
-    
+console.log(MessageBoard.messages.length);
+console.log(MessageBoard.messages);
 }
-
 };
 	
 // Här ser vi till att starta applikationen när fönstret laddat klart.
