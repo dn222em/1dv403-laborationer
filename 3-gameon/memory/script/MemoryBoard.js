@@ -8,31 +8,33 @@ var MemoryBoard = {
     count : 0,
     
     init : function (){
-        
+     //Declare local variables  
         ++MemoryBoard.count;
 
-        var defaultPictures = [];
-        var picture=null;
-        var memoryBoard=null;
-        var counter =0;
-        var countClicks=0;
-        pushElements(defaultPictures);
+        var picture = null;
+        var memoryBoard = null;
+        var counter = 0;
+        var countClicks = 0;
+        var adder = 11;
+        var twoPictures =[];
+        pushElements();
 
         var pictures = [];
         
-        while(counter < 2){
+        //var defaultPictures = []; //Array with the default picture
+        while(counter < 2){     //  It needs to run the //MemoryBoard.count-=MemoryBoard.count; and //randomImage(); statements twice
             ++counter;
-            MemoryBoard.count-=MemoryBoard.count;
-            randomImage();
+            MemoryBoard.count -= MemoryBoard.count;
+            randomImage();  
         }
-
-        //MemoryBoard.count-=MemoryBoard.count;
-        //randomImage();
-      
         
-        function pushElements(defaultPictures){
+        
+      
+        /*Method to create and push elements in the array and html- code */
+        function pushElements(){
             
             for (var i =0; i<16; i++){
+                
                 picture = document.createElement("img");
                 memoryBoard = document.getElementById("memoryBoard");
                 document.getElementById("memoryBoard").appendChild(picture);
@@ -43,34 +45,52 @@ var MemoryBoard = {
 
                 picture.id="picture No"+ MemoryBoard.count;
                 picture.className="defaultPicture";
+                
                 MemoryBoard.count++;
+                
                 picture.innerHTML; 
+                
                 memoryBoard.appendChild(picture);
-                defaultPictures.push(picture);
+                //defaultPictures.push(picture);
             }
         }
         function showImage(str){
             ++countClicks;
-            console.log((countClicks));
-
-            var a = str.target.id;
-       
-            var newPicture = document.getElementById(a);
+           
+           //Declare new variables
+            var elementId = str.target.id;                          // Finds picture id
+            var numberOfId =elementId.replace("picture No",'');     // Removes the number from id
+            twoPictures.push(elementId);
             
-            newPicture.setAttribute("src", pictures[0]);
-            pictures.splice(0,1);
+            //Stop from changing the same picture. (look dawn for method giveNewId();) 
+            if(Number(numberOfId)>16){
+                return;
+            }
+        
+            var newPicture = document.getElementById(elementId);    // New variabel - new image 
+            newPicture.setAttribute("src", pictures[0]);            // Change the picture with a random by giving a new attribute
+            pictures.splice(0,1);                                   // Removes this picture from array 
             newPicture.innerHTML;
-            a=str;
-            freezePictures(a);
+            newPicture.id = giveNewId(elementId);                   // Giving new id with a bigger number (look if(Number(b)>16) some lines up)
+            if(twoPictures.length === 2){
+                freezePictures(str);
+            }
+            /*if(freezePictures()){
+                while(twoPictures.length > 0) {
+                    twoPictures.pop();
+            }}*/
             return countClicks;
         }
+        
+        /*Method to create an new array with all images*/
         function randomImage(){
                 
             for(var j =0; j<8;j++){
                 MemoryBoard.count++;
                 pictures.push("memory/pics/"+MemoryBoard.count+".png");
             }
-            shuffleArray(pictures);
+            
+            shuffleArray(pictures); 
 
             /*
              * Randomize array element order in-place.
@@ -87,22 +107,44 @@ var MemoryBoard = {
             }
         }
         
-        function freezePictures(str){
-             
-        }   
-        function check(str1, str2){
-            if(str1!== str2){
-            console.log(str1);
-            console.log(str2);
-            console.log(str1+" "+str2);
-            /*var picture1 = document.getElementById(str1);
+       
+        /*Method to change elemente's / picture's id */
+        function giveNewId(str){
             
-            //var picture2 =  document.getElementById(secondPicture);
-            //document.getElementById("picture No"+firstPicture-1).appendChild(picture1);
-            picture1.setAttribute("src", "memory/pics/0.png");
+            // Declare new variables
+            var oldId = str;
+            var newId =oldId + adder;
+            return newId;
+        }
         
-           // picture2.setAttribute("src", "memory/pics/0.png");*/
+        function freezePictures(str){
+            
+            var picture1 = null;
+            var picture2 = null;
+            var delay = 800;
+            
+            if(twoPictures[0] === twoPictures[1]){
+                while(twoPictures.length > 0) {
+                    twoPictures.pop();}
+                return;
+               
             }
+            setTimeout(function(){
+                
+                    picture1= document.getElementById(twoPictures[0] + adder);//.getAttribute("src");
+                    picture1.setAttribute("src", "memory/pics/0.png");
+                    picture1.id = twoPictures[0];
+                    
+                    picture2 = document.getElementById(twoPictures[1] + adder);
+                    picture2.setAttribute("src", "memory/pics/0.png");
+                    picture2.id = twoPictures[1];
+                    
+                    while(twoPictures.length > 0) {
+                        twoPictures.pop();
+                    }
+                },delay);
+            return;  
+            
         }
     }
 };
