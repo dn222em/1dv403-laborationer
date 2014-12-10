@@ -14,10 +14,24 @@ var MemoryBoard = {
         var defaultPictures = [];
         var picture=null;
         var memoryBoard=null;
-        
+        var counter =0;
+        var countClicks=0;
         pushElements(defaultPictures);
+
+        var pictures = [];
+        
+        while(counter < 2){
+            ++counter;
+            MemoryBoard.count-=MemoryBoard.count;
+            randomImage();
+        }
+
+        //MemoryBoard.count-=MemoryBoard.count;
+        //randomImage();
+      
         
         function pushElements(defaultPictures){
+            
             for (var i =0; i<16; i++){
                 picture = document.createElement("img");
                 memoryBoard = document.getElementById("memoryBoard");
@@ -27,59 +41,70 @@ var MemoryBoard = {
     
                 picture.addEventListener("click", showImage);
 
-
                 picture.id="picture No"+ MemoryBoard.count;
                 picture.className="defaultPicture";
                 MemoryBoard.count++;
                 picture.innerHTML; 
                 memoryBoard.appendChild(picture);
                 defaultPictures.push(picture);
-               // console.log(defaultPictures);
-
             }
         }
         function showImage(str){
+            ++countClicks;
+            console.log((countClicks));
+
             var a = str.target.id;
-            var element = document.getElementById(a);
-            element.setAttribute("src", "memory/pics/1.png");
+       
+            var newPicture = document.getElementById(a);
             
-            console.log(a);
-            return element.innerHTML;
+            newPicture.setAttribute("src", pictures[0]);
+            pictures.splice(0,1);
+            newPicture.innerHTML;
+            a=str;
+            freezePictures(a);
+            return countClicks;
+        }
+        function randomImage(){
+                
+            for(var j =0; j<8;j++){
+                MemoryBoard.count++;
+                pictures.push("memory/pics/"+MemoryBoard.count+".png");
+            }
+            shuffleArray(pictures);
 
-            /*picture = document.createElement("img");
-            memoryBoard = document.getElementById("memoryBoard");
-            document.getElementById("memoryBoard").appendChild(picture);
-            picture.setAttribute("src", "memory/pics/1.png");
-
-            picture.id="picture No"+ MemoryBoard.count;
-            picture.className="defaultPicture";
-            MemoryBoard.count++;
-            picture.innerHTML; 
-            memoryBoard.appendChild(picture);*/
+            /*
+             * Randomize array element order in-place.
+             * Using Fisher-Yates shuffle algorithm.
+             */
+            function shuffleArray(pictures) {
+                for (var i = pictures.length - 1; i > 0; i--) {
+                    var j = Math.floor(Math.random() * (i + 1));
+                    var temp = pictures[i];
+                    pictures[i] = pictures[j];
+                    pictures[j] = temp;
+                }
+                return pictures;
+            }
         }
         
-
-        /*var memoryBoard = document.getElementById("memoryBoard");
-
-       
-        //memoryBoard.appendChild(picture);
+        function freezePictures(str){
+             
+        }   
+        function check(str1, str2){
+            if(str1!== str2){
+            console.log(str1);
+            console.log(str2);
+            console.log(str1+" "+str2);
+            /*var picture1 = document.getElementById(str1);
+            
+            //var picture2 =  document.getElementById(secondPicture);
+            //document.getElementById("picture No"+firstPicture-1).appendChild(picture1);
+            picture1.setAttribute("src", "memory/pics/0.png");
         
-      
-        var gameBoard = document.createElement("div");
-        document.getElementById("memoryBoard").appendChild(gameBoard);
-        gameBoard.innerHTML = pushElements();
-        memoryBoard.appendChild(gameBoard);*/
-        
-        
-       // = url("../pics/0.png");
-        console.log("hello");
-                console.log(defaultPictures);
-                                console.log();
-
-
-        
+           // picture2.setAttribute("src", "memory/pics/0.png");*/
+            }
+        }
     }
-    
 };
 
 window.onload = MemoryBoard.init;
