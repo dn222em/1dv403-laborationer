@@ -81,8 +81,11 @@ h1{
 	margin:10px auto 10px auto;
 	height:auto;
 	margin-top:150px;
-	padding-bottom:50px;
+	padding-bottom:10px;
 }
+
+
+	
 
 footer{
 	margin-top:50px;
@@ -291,6 +294,52 @@ footer p {
 	margin-right:25px;
 
 }
-#publish-button{
+/*=============================memory board=========*/
+#memoryBoard{
+	width: 220px;
+	height:220px;
+	
+	background-color:#fff;/*#e1e1e1;*/
+
+	padding:20px 20px  20px 20px;
+	margin-left:160px;
+	
+	box-shadow:3px 0px 8px  0px #bdbdbd inset;
+	box-shadow:0px 0px 10px  3px #bdbdbd inset;
+}
+
+
+/*========================default pictures==============*/
+.defaultPicture{
 	cursor:pointer;
+	float:left;
+	padding-right:10px;
+	padding-left:10px;
+	padding-bottom:10px;
+	padding-top:10px;
+	width:32px;
+	height:32px;
+	
+}
+
+.defaultPicture:hover{
+	-webkit-transform: scale(1.2); 
+    -moz-transform: scale(1.2);
+    transform: scale(1.2);	
+}
+.defaultPicture:active{
+	-webkit-transform: scale(1); 
+    -moz-transform: scale(1);
+    transform: scale(1);	
+}
+
+.defaultPicture:hover{
+	-webkit-transform: scale(1.2); 
+    -moz-transform: scale(1.2);
+    transform: scale(1.2);	
+}
+.defaultPicture:active{
+	-webkit-transform: scale(1.0); 
+    -moz-transform: scale(1.0);
+    transform: scale(1.0);	
 }
