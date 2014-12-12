@@ -35,9 +35,21 @@ var MessageBoard = {
         }
     };*/
 },
+    	
     
     createMessage:function (){
+        var shiftEnterKey = document.getElementById("comment-box");
+        shiftEnterKey.onkeypress = function ( e) {
         
+            if(e.keyCode == 13 && !e.shiftKey) {
+                MessageBoard.createMessage();
+                return false;
+    
+            }
+            else if (e.keyCode == 13 && e.shiftKey) {
+                //shiftEnterKey.value+='<br  />';//
+            }
+        };
         var now = new Date();//.toLocaleString();
         var message = new Message();
     	var ul = document.getElementById("comment-holder");
@@ -79,10 +91,12 @@ var MessageBoard = {
 		}
         
 		message.setNewDate(now);
-		if(MessageBoard.shiftEnterKey){
+		if(shiftEnterKey){
             subText = message.toString();
             emptyLine = subText.replace(/[\n\r]/g, "<br/>");
+            console.log(emptyLine);
             message.setText(emptyLine);
+            console.log(            message.setText(emptyLine));
 		}
 		++idCounter;
 		//message.id = "message No"+idCounter;
@@ -269,11 +283,11 @@ var MessageBoard = {
             fr.innerHTML=MessageBoard.messages.length;
         }
    }
-console.log(MessageBoard.messages.length);
-console.log(MessageBoard.messages);
+  console.log(MessageBoard.messages.length);
+  console.log(MessageBoard.messages);
+    
 }
 };
-	
 // Här ser vi till att starta applikationen när fönstret laddat klart.
 window.onload = MessageBoard.init;
    
