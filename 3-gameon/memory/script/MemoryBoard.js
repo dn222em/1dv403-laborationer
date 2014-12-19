@@ -14,7 +14,6 @@ var MemoryBoard = {
         //Declare local variables  
         var picture = null;
         var aTagg = null;
-        var memoryBoard = null;
         var counter = 0;
         var countClicks = 0;
         var adder = 11;
@@ -22,18 +21,19 @@ var MemoryBoard = {
         var pictures1 =[];
         var multiPictures =[pictures, pictures1];
         var index;
-        var delay = 600;
+        var delay = 200;
         var twoPictures = [];
         
         pushElements();
         randomImage();  
-  
+        
       
         /*Method to create and push elements in the array and html- code */
         function pushElements(){
             
             for (var b=0; b<16; b++){
                 aTagg = document.createElement("a");
+                aTagg.setAttribute("href", "#");
                 aTagg.id = "aTagg No"+ MemoryBoard.count;
                 MemoryBoard.count++;
                 aTagg.innerHTML;
@@ -43,29 +43,26 @@ var MemoryBoard = {
             }
             MemoryBoard.count = 0;
             for (var i =0; i<16; i++){
-                MemoryBoard.count++;
-                picture = document.createElement("img");
                 
+                MemoryBoard.count++;
+                
+                picture = document.createElement("img");
                 picture.setAttribute("src", "memory/pics/0.png");
                 picture.setAttribute("onClick", "");
-    
                 picture.addEventListener("click", showImage);
-                
                 picture.id="picture No"+ MemoryBoard.count;
                 picture.className="defaultPicture";
-                
-                
                 picture.innerHTML;
                 document.getElementById("aTagg No"+MemoryBoard.count).appendChild(picture);
-                
             }
         }
+         
         function showImage(str){
             
             ++countClicks;
-
            //Declare new variables
             var elementId = str.target.id;                          // Finds picture id
+            console.log(elementId);
             var numberOfId =elementId.replace("picture No",'');     // Removes the number from id
             
             
@@ -89,9 +86,10 @@ var MemoryBoard = {
             twoPictures.push(multiPictures[0][index]);
             newPicture.innerHTML;
             newPicture.id = giveNewId(elementId);                   // Giving new id with a bigger number (look if(Number(b)>16) some lines up)
-            if(twoPictures.length === 4){
+           if(twoPictures.length === 4){
                 freezePictures(str);
             }
+            return countClicks;
         }
         
         /*Method to create an new array with all images*/
@@ -136,9 +134,16 @@ var MemoryBoard = {
             var newId =oldId + adder;
             return newId;
         }
+        function removeNewId(str){
+            
+            // Declare new variables
+            var oldId = str;
+            var newId =oldId - adder;
+            return newId;
+        }
         
         function freezePictures(str){
-            
+            stopEventListener();
             var picture1 = null;
             var picture2 = null;
             
@@ -175,11 +180,9 @@ var MemoryBoard = {
                     div.appendChild(p);
                     return;
                 }
-                 
-                return;
+                delay = 400;
+                return setTimeout(function(){runEventListener(); },delay);
             }
-        
-
             setTimeout(function(){
                     
                     //If images are not identical each other. Then give default attribute
@@ -196,23 +199,22 @@ var MemoryBoard = {
                         twoPictures.pop();
                     }
                 },delay);
-            return;
-            
+            delay = 400;
+            return setTimeout(function(){runEventListener(); },delay);
         }
         
-        /*function stopEventListener(){
-            
-            /*for(var i=0; i<pictures.length; i++){
+        function stopEventListener(){
+            for(var i=0; i<pictures.length; i++){
                 var stopEvent = document.getElementsByClassName("defaultPicture")[i];
                 stopEvent.removeEventListener("click", showImage);
             }
-            setTimeout(function(){
-                for(var i=0; i<pictures.length; i++){
-                    var addEvent = document.getElementsByClassName("defaultPicture")[i];
-                    addEvent.addEventListener("click", showImage);
-                }
-            },delay);
-        }*/
+        }
+        function runEventListener(){
+            for(var i=0; i<pictures.length; i++){
+                var addEvent = document.getElementsByClassName("defaultPicture")[i];
+                addEvent.addEventListener("click", showImage);
+            }
+        }
       
     }
 };
